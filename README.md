@@ -1,5 +1,11 @@
 # agentauth
 
+[![npm version](https://img.shields.io/npm/v/@oauthkit/agentauth?color=cb3837&label=npm)](https://www.npmjs.com/package/@oauthkit/agentauth)
+[![npm downloads](https://img.shields.io/npm/dm/@oauthkit/agentauth?color=cb3837)](https://www.npmjs.com/package/@oauthkit/agentauth)
+[![CI](https://github.com/s300169140/agentauth/actions/workflows/ci.yml/badge.svg)](https://github.com/s300169140/agentauth/actions/workflows/ci.yml)
+[![license: MIT](https://img.shields.io/npm/l/@oauthkit/agentauth?color=blue)](./LICENSE)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@oauthkit/agentauth?color=brightgreen)](https://bundlephobia.com/package/@oauthkit/agentauth)
+
 > OAuth in 3 lines for AI agents. Device flow + localhost callback, multi-provider, file-backed token storage with auto-refresh. Built for the contexts where browser-redirect OAuth doesn't fit: CLIs, MCP servers, desktop agents, anything running locally on a user's machine.
 
 ```ts
