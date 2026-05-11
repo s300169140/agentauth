@@ -39,10 +39,31 @@ Node 18+ required (uses native `fetch`).
 | Provider | Default flow | OAuth setup |
 |---|---|---|
 | `github` | Device | https://github.com/settings/developers → New OAuth App → ✅ Enable Device Flow |
+| `slack` | Loopback | https://api.slack.com/apps → New App → OAuth & Permissions → Redirect URLs: `http://127.0.0.1:8765/callback` |
+| `notion` | Loopback | https://www.notion.so/my-integrations → New integration → Redirect URIs: `http://127.0.0.1:8766/callback` |
 
-More providers landing soon: Slack, Notion, Linear, Google, Atlassian. **Want one prioritized? [Open an issue](https://github.com/s300169140/agentauth/issues/new) with the service name.**
+More providers landing soon: Linear, Google, Atlassian, Discord. **Want one prioritized? [Open an issue](https://github.com/s300169140/agentauth/issues/new) with the service name.**
 
 You can also write your own — see [Custom providers](#custom-providers).
+
+```ts
+import { AgentAuth } from "agentauth"
+import { github } from "agentauth/providers/github"
+import { slack } from "agentauth/providers/slack"
+import { notion } from "agentauth/providers/notion"
+
+const auth = new AgentAuth({
+  providers: [
+    github({ clientId: process.env.GH_CLIENT_ID! }),
+    slack({ clientId: process.env.SLACK_CLIENT_ID!, clientSecret: process.env.SLACK_CLIENT_SECRET! }),
+    notion({ clientId: process.env.NOTION_CLIENT_ID!, clientSecret: process.env.NOTION_CLIENT_SECRET! }),
+  ],
+})
+
+const gh = await auth.authorize("github", { scopes: ["repo"] })
+const sl = await auth.authorize("slack", { scopes: ["channels:read", "chat:write"] })
+const nt = await auth.authorize("notion")
+```
 
 ## Common patterns
 
