@@ -3,8 +3,8 @@
 > OAuth in 3 lines for AI agents. Device flow + localhost callback, multi-provider, file-backed token storage with auto-refresh. Built for the contexts where browser-redirect OAuth doesn't fit: CLIs, MCP servers, desktop agents, anything running locally on a user's machine.
 
 ```ts
-import { AgentAuth } from "agentauth"
-import { github } from "agentauth/providers/github"
+import { AgentAuth } from "@s300169140/agentauth"
+import { github } from "@s300169140/agentauth/providers/github"
 
 const auth = new AgentAuth({ providers: [github({ clientId: "Iv1.abcd1234" })] })
 const { token } = await auth.authorize("github", { scopes: ["repo"] })
@@ -27,9 +27,9 @@ These contexts need different OAuth flows: **device flow** (where the user sees 
 ## Install
 
 ```sh
-npm install agentauth
+npm install @s300169140/agentauth
 # or
-bun add agentauth
+bun add @s300169140/agentauth
 ```
 
 Node 18+ required (uses native `fetch`).
@@ -47,10 +47,10 @@ More providers landing soon: Linear, Google, Atlassian, Discord. **Want one prio
 You can also write your own — see [Custom providers](#custom-providers).
 
 ```ts
-import { AgentAuth } from "agentauth"
-import { github } from "agentauth/providers/github"
-import { slack } from "agentauth/providers/slack"
-import { notion } from "agentauth/providers/notion"
+import { AgentAuth } from "@s300169140/agentauth"
+import { github } from "@s300169140/agentauth/providers/github"
+import { slack } from "@s300169140/agentauth/providers/slack"
+import { notion } from "@s300169140/agentauth/providers/notion"
 
 const auth = new AgentAuth({
   providers: [
@@ -104,7 +104,7 @@ await auth.logout("github", "work")  // forget a specific account
 Default is `FileTokenStorage` at `~/.agentauth/tokens.json` (mode 0600). Want OS keychain, Vault, an in-memory map, your own SQLite — implement `TokenStorage`:
 
 ```ts
-import type { TokenStorage } from "agentauth"
+import type { TokenStorage } from "@s300169140/agentauth"
 
 const myStorage: TokenStorage = {
   async get(key) { /* ... */ },
@@ -118,7 +118,7 @@ const auth = new AgentAuth({ storage: myStorage, providers: [...] })
 Or use the in-memory store for tests:
 
 ```ts
-import { MemoryTokenStorage } from "agentauth"
+import { MemoryTokenStorage } from "@s300169140/agentauth"
 const auth = new AgentAuth({ storage: new MemoryTokenStorage(), providers: [...] })
 ```
 
@@ -135,7 +135,7 @@ const auth = new AgentAuth({ log: (msg) => myLogger.info(msg), providers: [...] 
 A provider is a tiny object with one or both of `authorizeDevice` / `authorizeLoopback`. Here's the shape — full TypeScript types in [`src/types.ts`](./src/types.ts):
 
 ```ts
-import type { Provider, ProviderFlowContext, Token } from "agentauth"
+import type { Provider, ProviderFlowContext, Token } from "@s300169140/agentauth"
 
 export const myService: Provider = {
   id: "myservice",
