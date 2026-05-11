@@ -1,6 +1,6 @@
 {
-  "name": "@s300169140/agentauth",
-  "version": "0.1.0",
+  "name": "@oauthkit/agentauth",
+  "version": "0.1.1",
   "description": "OAuth in 3 lines for AI agents. Device flow + localhost callback, multi-provider, OS keychain storage, auto-refresh. Built for CLI / desktop / MCP-server contexts where browser-redirect OAuth doesn't fit.",
   "type": "module",
   "main": "./dist/index.js",
