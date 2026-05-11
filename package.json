@@ -1,0 +1,60 @@
+{
+  "name": "agentauth",
+  "version": "0.1.0",
+  "description": "OAuth in 3 lines for AI agents. Device flow + localhost callback, multi-provider, OS keychain storage, auto-refresh. Built for CLI / desktop / MCP-server contexts where browser-redirect OAuth doesn't fit.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./providers/*": {
+      "types": "./dist/providers/*.d.ts",
+      "import": "./dist/providers/*.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsup src/index.ts src/providers/*.ts --format esm --dts --clean",
+    "test": "bun test",
+    "format": "biome format --write src tests",
+    "format:check": "biome format src tests",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bun run build && bun run typecheck && bun test"
+  },
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "ai-agent",
+    "agent-auth",
+    "mcp",
+    "device-flow",
+    "cli",
+    "github",
+    "slack",
+    "notion"
+  ],
+  "author": "s300169140 <lennonli999@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s300169140/agentauth.git"
+  },
+  "homepage": "https://github.com/s300169140/agentauth#readme",
+  "bugs": {
+    "url": "https://github.com/s300169140/agentauth/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.15",
+    "@types/bun": "latest",
+    "@types/node": "^22.10.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.7.2"
+  }
+}
